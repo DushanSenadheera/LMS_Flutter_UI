@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project_lms/main.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'deletedLecturer.dart';
 
-
+String tempDel ='20';
 class First_Module extends StatefulWidget {
   const First_Module({Key? key}) : super(key: key);
 
@@ -68,7 +68,7 @@ class _First_ModuleState extends State<First_Module> {
                                 fontSize: 20),
                           ),
                           Text(
-                            "Learn",
+                            "Teach",
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                                 color: Colors.white,
@@ -184,7 +184,14 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
+
                                         ],
                                       ),
                                       Row(
@@ -199,7 +206,13 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                       Row(
@@ -213,6 +226,27 @@ class _First_ModuleState extends State<First_Module> {
                                               color: Colors.black,
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                             if(tempDel=='20'){
+                                               Fluttertoast.showToast(msg: "Lecture 3 Deleted Succesfully");
+                                               Navigator.push(
+                                                 context,
+                                                 MaterialPageRoute(
+
+                                                     builder: (context) => Delete_Module()),
+
+                                               );
+                                             };
+
+                                            },
+                                            child: Image.asset('assets/images/delete.png',
+                                              height: 25,
                                             ),
                                           )
                                         ],
@@ -229,7 +263,13 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -333,7 +373,13 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                       Row(
@@ -351,7 +397,13 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                       Row(
@@ -369,7 +421,13 @@ class _First_ModuleState extends State<First_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
 

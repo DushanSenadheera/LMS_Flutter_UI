@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project_lms/main.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-var down = 'new';
-
-void _downloadFiles() async {
-  if (down=='new') {
-    Fluttertoast.showToast(msg: "Lecture 01 Downloading...");
-    Fluttertoast.showToast(msg: "Lecture 01 Downloaded Successfully");
-
-  }
-}
+dynamic temp=0;
 
 
-class Second_Module extends StatefulWidget {
+class Upload_Module extends StatefulWidget {
+  const Upload_Module({Key? key}) : super(key: key);
+
   @override
-  _Second_ModuleState createState() => _Second_ModuleState();
+  _Upload_ModuleState createState() => _Upload_ModuleState();
 }
 
+class _Upload_ModuleState extends State<Upload_Module> {
+  final List<String> _files = [];
 
-class _Second_ModuleState extends State<Second_Module> {
+  void _selectFiles() async {
+    final result = await FilePicker.platform.pickFiles(type: FileType.any);
+    if (result != null) {
+      setState(() {
+        _files.add(result.files.single.path!);
+        Fluttertoast.showToast(msg: "Presentation1 Uploaded Successfully");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +72,7 @@ class _Second_ModuleState extends State<Second_Module> {
                                 fontSize: 20),
                           ),
                           Text(
-                            "Manage",
+                            "Teach",
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                                 color: Colors.white,
@@ -76,10 +83,6 @@ class _Second_ModuleState extends State<Second_Module> {
                         ],
                       ),
                     ],
-                  ),
-                  Image.network(
-                    'https://blog.hootsuite.com/wp-content/uploads/2020/02/Image-copyright.png',
-                    width: 80,
                   ),
                 ],
               ),
@@ -128,7 +131,7 @@ class _Second_ModuleState extends State<Second_Module> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "Web Development",
+                                "Computing Project",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -173,23 +176,27 @@ class _Second_ModuleState extends State<Second_Module> {
                                               height: 11 )
                                         ],
                                       ),
-                                      InkWell(
-                                        onTap: _downloadFiles,
-                                        child: Row(
-                                          children: [
-                                            Image.asset('assets/images/microsoft-powerpoint.png',
-                                              height: 40,
+                                      Row(
+                                        children: [
+                                          Image.asset('assets/images/microsoft-powerpoint.png',
+                                            height: 40,
+                                          ),
+                                          Text(
+                                            'Lecture 01',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 19,
+                                              fontFamily: 'Raleway',
                                             ),
-                                            Text(
-                                              'Lecture 01',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 19,
-                                                fontFamily: 'Raleway',
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
+
+                                        ],
                                       ),
                                       Row(
                                         children: [
@@ -203,24 +210,16 @@ class _Second_ModuleState extends State<Second_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Image.asset('assets/images/microsoft-powerpoint.png',
-                                            height: 40,
                                           ),
-                                          Text(
-                                            'Lecture 03',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 19,
-                                              fontFamily: 'Raleway',
-                                            ),
-                                          )
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
+
                                       Row(
                                         children: [
                                           Image.asset('assets/images/microsoft-powerpoint.png',
@@ -233,7 +232,34 @@ class _Second_ModuleState extends State<Second_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 165,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset('assets/images/microsoft-powerpoint.png',
+                                            height: 40,
+                                          ),
+                                          Text(
+                                            'Presentation1',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 19,
+                                              fontFamily: 'Raleway',
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 141,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -241,8 +267,54 @@ class _Second_ModuleState extends State<Second_Module> {
                                 ),
                               ),
                               SizedBox(
-                                height: 30,
+                                height: 20,
                               ),
+
+                              //Upload
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5),
+                                child: GestureDetector(
+                                  onTap:
+                                  _selectFiles,
+
+                                  child: SizedBox(
+                                    width: 500,
+                                    height: 50,
+                                    child: DottedBorder(
+                                      dashPattern: const [7],
+                                      strokeWidth: 3,
+                                      color: Colors.blue,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children:  [
+                                              Image.asset('assets/images/upload.png', height: 24,),
+                                              SizedBox(width: 30,),
+                                              Text(
+                                                'Upload',
+                                                style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(
+                                height: 20,
+                              ),
+
+
 
                               //Box Container 02 - Coursework
                               Container(
@@ -293,7 +365,13 @@ class _Second_ModuleState extends State<Second_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                       Row(
@@ -311,7 +389,13 @@ class _Second_ModuleState extends State<Second_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
                                       Row(
@@ -329,7 +413,13 @@ class _Second_ModuleState extends State<Second_Module> {
                                               fontSize: 19,
                                               fontFamily: 'Raleway',
                                             ),
-                                          )
+                                          ),
+                                          SizedBox(
+                                            width: 130,
+                                          ),
+                                          Image.asset('assets/images/delete.png',
+                                            height: 25,
+                                          ),
                                         ],
                                       ),
 
@@ -340,8 +430,52 @@ class _Second_ModuleState extends State<Second_Module> {
                               ),
 
                               SizedBox(
-                                height: 30,
+                                height: 20,
                               ),
+
+                              //Upload
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5),
+                                child: GestureDetector(
+                                  onTap: _selectFiles,
+                                  child: SizedBox(
+                                    width: 500,
+                                    height: 50,
+                                    child: DottedBorder(
+                                      dashPattern: const [7],
+                                      strokeWidth: 3,
+                                      color: Colors.blue,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children:  [
+                                              Image.asset('assets/images/upload.png', height: 24,),
+                                              SizedBox(width: 30,),
+                                              Text(
+                                                'Upload',
+                                                style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(
+                                height: 20,
+                              ),
+
+
                               //Box Container 03 - References
                               Container(
                                 width: 500,
@@ -383,7 +517,49 @@ class _Second_ModuleState extends State<Second_Module> {
                               ),
 
                               SizedBox(
-                                height: 30,
+                                height: 20,
+                              ),
+
+                              //Upload
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5),
+                                child: GestureDetector(
+                                  onTap: _selectFiles,
+                                  child: SizedBox(
+                                    width: 500,
+                                    height: 50,
+                                    child: DottedBorder(
+                                      dashPattern: const [7],
+                                      strokeWidth: 3,
+                                      color: Colors.blue,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children:  [
+                                              Image.asset('assets/images/upload.png', height: 24,),
+                                              SizedBox(width: 30,),
+                                              Text(
+                                                'Upload',
+                                                style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(
+                                height: 50,
                               ),
                             ],
                           ),
